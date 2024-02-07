@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/* Inside styles.css or styles.scss */
+@import '~aos/dist/aos.css';
+body{
+    background: linear-gradient(10deg, rgba(254,254,254,1) 52%, rgba(217,226,255,1) 100%);
+}
