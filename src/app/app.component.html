@@ -23,7 +23,7 @@
             </div>
         </div>
     </main>
-    <section class="about-me" data-aos="fade-up" data-aos-duration="1000">
+    <section class="about-me" [@scrollAnimation]="scrollAnimationState ? 'in' : 'out'">
       <div class="profile-container">
         <div class="profile-badge">
           <!-- The image will be placed via CSS to overlap with the circle -->
