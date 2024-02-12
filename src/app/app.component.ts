@@ -52,6 +52,7 @@ export class AppComponent {
       copy: 'This machine learning model is catered for Hosts(especially new host) to predict a price estimation for their AirBnB listing based on some features like city, property type etc',
       button: 'View More',
       button2: "Watch Demo",
+      demoURL:"https://www.youtube.com/watch?v=x2GqVLBs2Ho&t=1s",
       imageId: 'assets/MachineLearning.svg'
     },
     {
@@ -72,6 +73,7 @@ export class AppComponent {
       copy: 'Tishoes is an e-commerce Mobile App that sells customised Branded Sneakers.Sellers are able to put their design up for sale and buyers are able to purchase customised sneakers from these sellers.',
       button: 'View More',
       button2:"Watch Demo",
+      demoURL : "https://www.youtube.com/watch?v=vvXKCHXJEjQ",
       imageId: 'assets/Tishoes_Mobile.svg'
     },
     {
@@ -79,10 +81,10 @@ export class AppComponent {
       copy: 'Tishoes is an e-commerce Website that sells customised Branded Sneakers.Sellers are able to put their design up for sale and buyers are able to purchase customised sneakers from these sellers. ',
       button: 'View More',
       button2: "Watch Demo",
+      demoURL:"https://www.youtube.com/watch?v=Xc-7UvElM9c",
       imageId: 'assets/Tishoes_Web.svg'
     },
   ]
-
 
   constructor() {
   }
@@ -105,19 +107,22 @@ export class AppComponent {
     });
   }
 
-  watchDemo(index: number) {
-    // Handle the watch demo action here, for example:
-    console.log('Watching demo for card index:', index);
+  watchDemo(url?: string) {
+    if (url) {
+      window.open(url, "_blank");
+    } else {
+      // Handle the case where there is no URL, e.g., show an error or do nothing
+      console.error("No demo URL provided.");
+    }
   }
   
+
   showMore(index: number ){
     //
   }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: Event) {
-    // You'd check the position of your element and set `scrollAnimationState` to true if it's in view.
-    // For demonstration, let's say it's always true when scrolling
     this.scrollAnimationState = true;
   }
 }

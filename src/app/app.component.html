@@ -1,18 +1,18 @@
 <header>
   <div class="navbar">
-      <div class="logo">JT</div>
-      <nav>
-          <ul>
-              <li><a href="#about">ABOUT</a></li>
-              <li><a href="#portfolio">PORTFOLIO</a></li>
-              <li><a href="#hire-me">REACH OUT</a></li>
-          </ul>
-      </nav>
+    <div class="logo">JT</div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav id="navbarLinks">
+      <ul>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#portfolio">PORTFOLIO</a></li>
+        <li><a href="#reach-out">REACH OUT</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 <main>
   <div class="hero-image">
-      <!-- Image placeholder -->
       <img src="assets/abstract.svg" alt="Abstract Art">
   </div>
   <div class="hero">
@@ -24,7 +24,7 @@
   </div>
 </main>
 
-    <section class="about-me" [@scrollAnimation]="scrollAnimationState ? 'in' : 'out'">
+<section id="about" class="about-me" [@scrollAnimation]="scrollAnimationState ? 'in' : 'out'">
       <div class="profile-container">
         <div class="profile-badge">
           <img src="assets/photo_2024-02-07_21-35-48.jpg" alt="Joyce Teng">
@@ -48,7 +48,7 @@
         </div>
       </div>
     </section>
-    <section class="portfolio" [@fadeIn]>
+    <section id="portfolio" class="portfolio" [@fadeIn]>
       <h2>My Portfolio</h2>
       <div class="carousel-container" #carouselContainer>
         <div class="carousel-arrow left-arrow" (click)="prevCard()">&#10094;</div>
@@ -56,22 +56,22 @@
           <div *ngFor="let card of cards; let i = index" class="card" [@fadeIn]>
             <img [src]="card.imageId">
             <div class="content">
-              <h3 class="title">{{ card.title }}</h3>
+              <h5 class="title">{{ card.title }}</h5>
               <br>
               <p class="copy">{{ card.copy }}</p>
               <button class="btn" (click)="showMore(i)">{{ card.button }}</button>
               <!-- Conditionally display the second button if it exists -->
               <br>
-              <button *ngIf="card.button2" class="btn" (click)="watchDemo(i)">{{ card.button2 }}</button>
+              <button *ngIf="card.button2 && card.demoURL" class="btn" (click)="watchDemo(card.demoURL)">{{ card.button2 }}</button>
+
             </div>
           </div>
         </div>
         <div class="carousel-arrow right-arrow" (click)="nextCard()">&#10095;</div>
       </div>
     </section>
-    
 
-    <section class="reach-out" aria-label="Reach Out Section">
+    <section id="reach-out" class="reach-out" aria-label="Reach Out Section">
       <div class="container">
         <h2>Contact Details</h2>
         <p>+6598506745</p>
@@ -80,6 +80,6 @@
         <a href="https://www.linkedin.com/in/joyce-teng/" target="_blank">linkedin.com/in/joyce-teng/</a>
       </div>
     </section>
-    
-    
+
+
     

@@ -1,47 +1,63 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
 header {
     padding: 10px 5%;
     display: flex;
-    justify-content: space-between; /* This will help push the nav to the right */
+    justify-content: space-between; 
     align-items: center;
-    position: sticky; /* Make the header sticky */
-    top: 0; /* Set the top position to the viewport's top */
-    z-index: 1000; /* Ensure the header is above other elements */
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
 }
 
-
-/* If you want the logo and the nav to be on the same line */
 .navbar {
     display: flex;
     justify-content: space-between;
-    width: 100%; 
-}
+    align-items: center;
+  }
+  
+
+  .hamburger {
+    display: none;
+  }
+  
+ 
+  #navbarLinks ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  #navbarLinks li {
+    padding: 10px;
+  }
 
 .logo{
     font-family: 'Acme', sans-serif;
     color: #212121;
 }
 
-/* Updated styles for navbar navigation */
 nav {
-    align-self: flex-end; /* Aligns the nav to the bottom of the header */
+    align-self: flex-end; 
 }
 
 .navbar ul {
     list-style: none;
     padding: 0;
-    margin: 0; /* Reset margin to adjust alignment */
-    display: flex; /* Aligns the list items in a row */
-    justify-content: flex-end; /* Aligns the list to the right */
-}
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
 
 .navbar li {
-    margin: 0 10px; /* Keeps spacing between nav items */
+    margin: 0 10px;
 }
 
 .navbar li {
     margin: 0 10px;
-    position: relative; /* Added to position the pseudo-elements */
-    display: inline-block; /* Adjusted from display: inline; */
+    position: relative; 
+    display: inline-block; 
 }
 
 .navbar a {
@@ -50,13 +66,12 @@ nav {
     text-transform: uppercase;
     font-size: 1.5em;
     font-family: 'Acme', sans-serif;
-    position: relative; /* Added to position the pseudo-element */
-    overflow: hidden; /* Ensures the pseudo-element is clipped to the link's dimensions */
-    display: inline-block; /* Allows us to set dimensions */
-    padding: 5px 0; /* Adjust padding to control the spacing */
+    position: relative; 
+    overflow: hidden; 
+    display: inline-block; 
+    padding: 5px 0; 
 }
 
-/* New styles for hover effect */
 .navbar a::before {
     content: '';
     position: absolute;
@@ -65,15 +80,14 @@ nav {
     right: 0;
     bottom: 0;
     background-color: #212121; /* The color of the block that appears on hover */
-    height: 0%; /* Start with no height */
+    height: 0%; 
     transition: height 0.3s ease-in-out; /* Smooth transition for the height */
 }
 
 .navbar a:hover::before {
-    height: 100%; /* On hover, the height becomes 100% */
-    color: #fff; /* Change text color on hover if needed */
+    height: 100%; 
+    color: #fff; 
 }
-
 
 .navbar a:hover {
     background-color: #212121;
@@ -86,7 +100,7 @@ nav {
     align-items: center;
     padding: 0 20%; /* Adjust padding as needed, but remove top and bottom padding */    
     height: 100vh; /* Set the hero section to full viewport height */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-sizing: border-box; 
     position: relative; /* Add this to ensure the stacking context starts here */
 }
 
@@ -101,9 +115,8 @@ nav {
 }
 
 .hero-image img {
-    width: 100%; /* Ensure the image covers its container */
-    height: auto; /* Maintain aspect ratio */
-    /* You may want to adjust/omit the max-width depending on the actual size of the image */
+    width: 100%; 
+    height: auto; 
 }
 .hero-text {
     max-width: 50%;
@@ -372,44 +385,104 @@ nav {
   }
   
 
-/* Responsive styling */
+/* Styles for mobile devices */
 @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        cursor: pointer;
+      }
+    
+      /* Hide the menu items */
+      #navbarLinks ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+      }
+    
+      /* Show the menu items when .active is added to #navbarLinks */
+      #navbarLinks.active ul {
+        display: flex;
+      }
+    
+      /* Style the menu items for mobile */
+      #navbarLinks li {
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+      }
+    .navbar ul {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+  
+    .navbar li {
+      margin: 10px 0;
+    }
+  
+    .navbar a {
+      font-size: 1em; 
+    }
+  
     .hero {
+        height: auto; 
+        padding: 20px 10%; 
         flex-direction: column;
         text-align: center;
-    }
-
-    .hero-text, .hero-image {
-        max-width: 100%;
-    }
-
-    .hero-image {
-        position: relative; /* Change position to relative on smaller screens */
+      }
+    
+      .hero-image {
+        position: relative;
         width: 100%;
-        height: auto;
+        height: auto; /* Height is set to auto to contain the image nicely */
+        order: -1; /* Ensures the image goes above the text on mobile */
+      }
+    
+      .hero-text, .hero-image {
+        max-width: 100%;
+      }
+    
+      .hero-text h1 {
+        font-size: 2em; /* Adjust the font size for smaller screens */
+      }
+    
+      .hero-text p {
+        font-size: 1.2em; /* Adjust the paragraph font size for readability */
+      }
+  
+    .contact-button {
+      padding: 5px 10px; /* Smaller padding for buttons */
     }
-
-    .hero-image img {
-        max-width: 70%;
-        margin-top: 30px;
+  
+    /* Adjust the profile image for mobile */
+    .profile-badge {
+      width: 200px; /* Smaller width for the badge */
+      height: 200px; /* Smaller height for the badge */
     }
-
-    .about-me {
-    flex-direction: column;
-    text-align: center;
+  
+    .profile-description {
+      text-align: center; /* Center text for mobile */
+    }
+  
+    /* Adjust card sizes for mobile */
+    .card {
+      max-width: 100%;
+      margin: 10px; /* Add margin for spacing */
+    }
+  
+    /* Adjust image sizes within cards for mobile */
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    /* Adjust carousel arrow positions for smaller screens */
+    .carousel-arrow {
+      font-size: 1.5em; /* Smaller arrows */
+      padding: 0 10px; /* Less padding */
+    }
+  
+    .reach-out .container {
+      padding: 20px; /* Padding inside the container */
+    }
   }
-
-  .profile-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .profile-badge {
-    margin-bottom: -50px; /* Adjust based on the size of the image */
-  }
-
-  .profile-description {
-    max-width: 100%;
-  }
-
-}
