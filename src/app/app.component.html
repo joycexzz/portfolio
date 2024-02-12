@@ -1,32 +1,32 @@
-    <header>
-        <div class="navbar">
-            <div class="logo">JT</div>
-            <nav>
-                <ul>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#portfolio">PORTFOLIO</a></li>
-                    <li><a href="#hire-me">HIRE ME</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <div class="hero">
-            <div class="hero-text">
-                <h1>JOYCE TENG<span></span></h1>
-                <p>UI/UX and Data Enthusiast</p>
-                <a href="#contact" class="contact-button">GET IN TOUCH</a>
-            </div>
-            <div class="hero-image">
-                <!-- Image placeholder -->
-                <img src="path-to-your-image.jpg" alt="Abstract Art">
-            </div>
-        </div>
-    </main>
+<header>
+  <div class="navbar">
+      <div class="logo">JT</div>
+      <nav>
+          <ul>
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#portfolio">PORTFOLIO</a></li>
+              <li><a href="#hire-me">REACH OUT</a></li>
+          </ul>
+      </nav>
+  </div>
+</header>
+<main>
+  <div class="hero-image">
+      <!-- Image placeholder -->
+      <img src="assets/abstract.svg" alt="Abstract Art">
+  </div>
+  <div class="hero">
+      <div class="hero-text">
+          <h1>JOYCE TENG<span></span></h1>
+          <p>UI/UX and Data Enthusiast</p>
+          <a href="#contact" class="contact-button">GET IN TOUCH</a>
+      </div>
+  </div>
+</main>
+
     <section class="about-me" [@scrollAnimation]="scrollAnimationState ? 'in' : 'out'">
       <div class="profile-container">
         <div class="profile-badge">
-          <!-- The image will be placed via CSS to overlap with the circle -->
           <img src="assets/photo_2024-02-07_21-35-48.jpg" alt="Joyce Teng">
         </div>
         <div class="profile-description">
@@ -41,10 +41,45 @@
               diving into data, extracting valuable insights and turning data-driven decisions into reality. </b></p>
 
           <p>Join me on this exciting journey where I fuse design and data to create meaningful,user-centric tech solutions.</p>
-          <button class="download-resume">DOWNLOAD MY RESUME</button>
+          
+          <a href="assets/JoyceTeng_Resume.pdf" class="download-resume" download="JoyceTeng_Resume.pdf">
+            <button class="download-link">DOWNLOAD MY RESUME</button>
+          </a>
         </div>
+      </div>
+    </section>
+    <section class="portfolio" [@fadeIn]>
+      <h2>My Portfolio</h2>
+      <div class="carousel-container" #carouselContainer>
+        <div class="carousel-arrow left-arrow" (click)="prevCard()">&#10094;</div>
+        <div class="cards-container" #cardsContainer>
+          <div *ngFor="let card of cards; let i = index" class="card" [@fadeIn]>
+            <img [src]="card.imageId">
+            <div class="content">
+              <h3 class="title">{{ card.title }}</h3>
+              <br>
+              <p class="copy">{{ card.copy }}</p>
+              <button class="btn" (click)="showMore(i)">{{ card.button }}</button>
+              <!-- Conditionally display the second button if it exists -->
+              <br>
+              <button *ngIf="card.button2" class="btn" (click)="watchDemo(i)">{{ card.button2 }}</button>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-arrow right-arrow" (click)="nextCard()">&#10095;</div>
       </div>
     </section>
     
 
-
+    <section class="reach-out" aria-label="Reach Out Section">
+      <div class="container">
+        <h2>Contact Details</h2>
+        <p>+6598506745</p>
+        <p>joycee.tml@gmail.com</p>
+        <h2>LinkedIn</h2>
+        <a href="https://www.linkedin.com/in/joyce-teng/" target="_blank">linkedin.com/in/joyce-teng/</a>
+      </div>
+    </section>
+    
+    
+    

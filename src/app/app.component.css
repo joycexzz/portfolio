@@ -3,7 +3,11 @@ header {
     display: flex;
     justify-content: space-between; /* This will help push the nav to the right */
     align-items: center;
+    position: sticky; /* Make the header sticky */
+    top: 0; /* Set the top position to the viewport's top */
+    z-index: 1000; /* Ensure the header is above other elements */
 }
+
 
 /* If you want the logo and the nav to be on the same line */
 .navbar {
@@ -14,7 +18,7 @@ header {
 
 .logo{
     font-family: 'Acme', sans-serif;
-    color: #FFF;
+    color: #212121;
 }
 
 /* Updated styles for navbar navigation */
@@ -83,8 +87,24 @@ nav {
     padding: 0 20%; /* Adjust padding as needed, but remove top and bottom padding */    
     height: 100vh; /* Set the hero section to full viewport height */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    position: relative; /* Add this to ensure the stacking context starts here */
 }
 
+.hero-image {
+    position: absolute; /* Position the image absolutely */
+    top: 0;
+    right: 0; /* Align the image to the right */
+    z-index: 0; /* Ensure that the image is behind the navbar */
+    width: 50%; /* Set a width for the image or adjust as necessary */
+    height: 100%; /* Set the image to full height */
+    overflow: hidden; /* Hide any overflow */
+}
+
+.hero-image img {
+    width: 100%; /* Ensure the image covers its container */
+    height: auto; /* Maintain aspect ratio */
+    /* You may want to adjust/omit the max-width depending on the actual size of the image */
+}
 .hero-text {
     max-width: 50%;
     font-family: 'Acme', sans-serif;
@@ -113,10 +133,6 @@ nav {
     cursor: pointer;
     border-radius: 48px;
 }
-.hero-image img {
-    max-width: 40%;
-    height: auto;
-}
 
 
 .about-me {
@@ -124,8 +140,7 @@ nav {
     justify-content: center;
     align-items: center;
     padding: 50px 10%;
-    background: #fff; /* Adjust the color to match your design */
-    color: #212121; /* Adjust the color to match your design */
+    color: #212121; 
   }
   
  /* Ensure the profile container is centered and the items don't overlap */
@@ -152,7 +167,6 @@ nav {
     display: block; /* Remove any extra space below the image */
 }
 
-/* Style the profile description with appropriate margins */
 .profile-description {
     max-width: 500px; /* Adjust based on your content */
     text-align: left; /* Align the text to the left */
@@ -185,24 +199,178 @@ nav {
     color: #666; /* Adjust the color to match your design */
   }
   
-  .profile-description .download-resume {
-    background:  #212121;
+  .download-link {
+    background: #212121;
     color: #fff;
-    text-decoration: none;
     padding: 10px 20px;
-    display: inline-block;
     text-transform: uppercase;
-    margin-top: 20px;
-    border: none;
     cursor: pointer;
     border-radius: 40px;
-    font-family: 'Acme', sans-serif; 
-    height: 50px;
+    font-family: 'Acme', sans-serif;
+    text-decoration: none; 
+    display: inline-block; 
+    border: none; 
+    line-height: 30px; 
+    height: 50px; 
+    width: auto; 
+    box-sizing: border-box; 
+    text-align: center; 
+}
+
+.download-link:hover {
+    background: #333; 
+    color: #fff; 
+}
+
+.portfolio {
+    margin: 5% 10%;
+}
+
+
+.carousel-container {
+    position: relative;
   }
+  
+  .cards-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Enables snap scrolling */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .cards-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    color: #fff;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .left-arrow {
+    left: 0;
+  }
+  
+  .right-arrow {
+    right: 0;
+  }
+  
+  .card {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+    flex: 0 0 auto;
+    margin-right: 1rem;
+    scroll-snap-align: start;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 16px;
+    max-width: 315px;
+    background: transparent; /* Set background to transparent */
+    border: none;
+    padding: 1rem;
+}
+
+.card img {
+    max-width: 100%; /* Image can be as wide as its container */
+    max-height: 100%; /* Image can be as tall as its container */
+    transition: transform 0.3s ease-in-out;
+    object-fit: contain; /* This ensures the image maintains its aspect ratio */
+}
+
+.card .content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;
+    transform: translateY(100%); /* Hide the details initially */
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+}
+
+.card:hover .content {
+    transform: translateY(0);
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+  
+  .card .title, .card .btn {
+    margin: 0; 
+    text-align: center;
+  }
+
+  .copy{
+    text-align: center;
+  }
+  
+  .card .btn {
+    background: #212121;
+    border: none;
+    color: white;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .card .btn:hover {
+    background: #333; /* Darker background on hover */
+  }
+
+
+  .card:focus {
+    outline: none;
+}
+
 
   p{
     font-family: 'Acme', sans-serif; 
   }
+
+  .reach-out {
+    padding: 40px 0; /* Padding on top and bottom */
+    text-align: center; /* Center the text */
+  }
+  
+  .reach-out .container {
+    max-width: 800px; 
+    margin: 0 auto; 
+  }
+  
+  .reach-out h2 {
+    color: #212121; /* Dark text color for headers */
+    margin-bottom: 20px; /* Space below headers */
+  }
+  
+  .reach-out p,
+  .reach-out a {
+    display: block; /* Each contact detail on a new line */
+    margin-bottom: 10px; /* Space below each line */
+    text-decoration: none; /* No underline on the link */
+  }
+  
 
 /* Responsive styling */
 @media (max-width: 768px) {
@@ -213,6 +381,12 @@ nav {
 
     .hero-text, .hero-image {
         max-width: 100%;
+    }
+
+    .hero-image {
+        position: relative; /* Change position to relative on smaller screens */
+        width: 100%;
+        height: auto;
     }
 
     .hero-image img {

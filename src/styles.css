@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 body{
-    background: linear-gradient(10deg, rgba(254,254,254,1) 52%, rgba(217,226,255,1) 100%);
+    background: rgb(251,251,251);
+    background: -moz-linear-gradient(30deg, rgba(251,251,251,1) 0%, rgba(255,255,255,1) 58%, rgba(220,234,255,1) 78%, rgba(230,218,255,1) 98%);
+    background: -webkit-linear-gradient(30deg, rgba(251,251,251,1) 0%, rgba(255,255,255,1) 58%, rgba(220,234,255,1) 78%, rgba(230,218,255,1) 98%);
+    background: linear-gradient(30deg, rgba(251,251,251,1) 0%, rgba(255,255,255,1) 58%, rgba(220,234,255,1) 78%, rgba(230,218,255,1) 98%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fbfbfb",endColorstr="#e6daff",GradientType=1);
 }
