@@ -61,7 +61,7 @@
               <h5 class="title">{{ card.title }}</h5>
               <br>
               <p class="copy">{{ card.copy }}</p>
-              <button class="btn" (click)="showMore(i)">{{ card.button }}</button>
+              <button class="btn" *ngIf="card.button" (click)="openViewMore(card.viewMoreURL)">{{ card.button }}</button>
               <!-- Conditionally display the second button if it exists -->
               <br>
               <button *ngIf="card.button2 && card.demoURL" class="btn" (click)="watchDemo(card.demoURL)">{{ card.button2 }}</button>
