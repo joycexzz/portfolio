@@ -1,123 +1,174 @@
-html {
-    scroll-behavior: smooth;
-  }
-  
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Acme', sans-serif;
+}
+
+/* Header and Navbar Styles */
 header {
     padding: 10px 5%;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
-    position: sticky; 
-    top: 0; 
-    z-index: 1000; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: transparent;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-  }
-  
+    width: 100%;
+}
 
-  .hamburger {
-    display: none;
-  }
-  
- 
-  #navbarLinks ul {
-    list-style: none;
-    display: flex;
-  }
-  
-  #navbarLinks li {
-    padding: 10px;
-  }
-
-.logo{
-    font-family: 'Acme', sans-serif;
+.logo {
     color: #212121;
+    font-size: 1em;
 }
 
-nav {
-    align-self: flex-end; 
+/* Hamburger Icon - shown on mobile */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #FFF;
 }
 
-.navbar ul {
+/* Navbar Links */
+#navbarLinks {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     list-style: none;
-    padding: 0;
-    margin: 0;
+}
+
+#navbarLinks ul {
+    display: flex;
+    flex-direction: row; /* Align items in a row for desktop */
+}
+
+#navbarLinks ul li {
+    padding: 0 10px;
+}
+
+#navbarLinks ul li a {
+    color: #212121;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 5px 0; /* Padding to increase the clickable area */
+    position: relative; /* Position relative for the pseudo-element */
+}
+
+#navbarLinks ul li a::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background-color: #fff;
+    height: 3px; /* Only a small line under the text */
+    transition: all 0.3s ease-in-out;
+}
+
+#navbarLinks ul li a:hover::before {
+    left: 0;
+    right: 0;
+}
+
+#navbarLinks ul li a:hover {
+    color: #61DAFB;
+}
+
+/* Overlay for mobile menu */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999;
+    transition: opacity 0.5s ease;
+}
+
+/* Checkbox for hamburger menu toggle */
+.hamburger-checkbox {
+    display: none; /* Hide checkbox */
+}
+
+/* Show menu when checkbox is checked */
+.hamburger-checkbox:checked ~ #navbarLinks {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.hamburger-checkbox:checked ~ .overlay {
+    display: block;
+    opacity: 1;
+}
+
+/* Non-mobile navbar styles */
+.navbar ul {
     display: flex;
     justify-content: flex-end;
-  }
-
-.navbar li {
-    margin: 0 10px;
 }
 
 .navbar li {
     margin: 0 10px;
-    position: relative; 
-    display: inline-block; 
+    position: relative;
 }
 
 .navbar a {
     text-decoration: none;
-    color:  #212121;
-    text-transform: uppercase;
+    color: #212121;
     font-size: 1.5em;
     font-family: 'Acme', sans-serif;
-    position: relative; 
-    overflow: hidden; 
-    display: inline-block; 
-    padding: 5px 0; 
-}
-
-.navbar a::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #212121; /* The color of the block that appears on hover */
-    height: 0%; 
-    transition: height 0.3s ease-in-out; /* Smooth transition for the height */
-}
-
-.navbar a:hover::before {
-    height: 100%; 
-    color: #fff; 
-}
-
-.navbar a:hover {
-    background-color: #212121;
-    color: #fff; 
 }
 
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20%; /* Adjust padding as needed, but remove top and bottom padding */    
-    height: 100vh; /* Set the hero section to full viewport height */
-    box-sizing: border-box; 
-    position: relative; /* Add this to ensure the stacking context starts here */
+    padding: 0 20%;
+    /* Adjust padding as needed, but remove top and bottom padding */
+    height: 100vh;
+    /* Set the hero section to full viewport height */
+    box-sizing: border-box;
+    position: relative;
+    /* Add this to ensure the stacking context starts here */
 }
 
 .hero-image {
-    position: absolute; /* Position the image absolutely */
+    position: absolute;
+    /* Position the image absolutely */
     top: 0;
-    right: 0; /* Align the image to the right */
-    z-index: 0; /* Ensure that the image is behind the navbar */
-    width: 50%; /* Set a width for the image or adjust as necessary */
-    height: 100%; /* Set the image to full height */
-    overflow: hidden; /* Hide any overflow */
+    right: 0;
+    /* Align the image to the right */
+    z-index: 0;
+    /* Ensure that the image is behind the navbar */
+    width: 50%;
+    /* Set a width for the image or adjust as necessary */
+    height: 100%;
+    /* Set the image to full height */
+    overflow: hidden;
+    /* Hide any overflow */
 }
 
 .hero-image img {
-    width: 100%; 
-    height: auto; 
+    width: 100%;
+    height: auto;
 }
+
 .hero-text {
     max-width: 50%;
     font-family: 'Acme', sans-serif;
@@ -126,7 +177,7 @@ nav {
 .hero-text h1 {
     font-size: 4em;
     margin: 0;
-    font-family: 'Acme', sans-serif;   
+    font-family: 'Acme', sans-serif;
 }
 
 .hero-text p {
@@ -137,7 +188,7 @@ nav {
 
 .contact-button {
     padding: 10px 20px;
-    background:  #212121;
+    background: #212121;
     color: #FFF;
     text-decoration: none;
     text-transform: uppercase;
@@ -153,66 +204,67 @@ nav {
     justify-content: center;
     align-items: center;
     padding: 50px 10%;
-    color: #212121; 
-  }
-  
- /* Ensure the profile container is centered and the items don't overlap */
+    color: #212121;
+}
+
+
 .profile-container {
     display: flex;
-    justify-content: center; /* Center the items horizontally */
-    align-items: center; /* Center the items vertically */
-    gap: 50px; /* Adjust the gap to ensure there's space between text and image */
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
 }
-  
-/* Adjust the size of the profile image and its container */
+
 .profile-badge {
-    flex-shrink: 0; /* Prevent the badge from shrinking */
-    width: 380px; /* Adjust the width as needed */
-    height: 380px; /* Adjust the height as needed */
+    flex-shrink: 0;
+    width: 380px;
+    height: 380px;
     border-radius: 50%;
     position: relative;
-    overflow: hidden; /* Ensure the image doesn't overflow the badge area */
+    overflow: hidden;
 }
+
 .profile-badge img {
-    width: 100%; /* Ensure the image covers the badge area */
-    height: auto; /* Maintain the aspect ratio */
-    display: block; /* Remove any extra space below the image */
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .profile-description {
-    max-width: 500px; /* Adjust based on your content */
-    text-align: left; /* Align the text to the left */
+    max-width: 500px;
+    text-align: left;
 }
-  .profile-description .what-i-do {
-    border: 2px solid  #212121; /* Adjust the color to match your design */
+
+.profile-description .what-i-do {
+    border: 2px solid #212121;
     background: none;
-    color:  #212121;
+    color: #212121;
     padding: 10px 20px;
     font-size: 0.9em;
     cursor: pointer;
     text-transform: uppercase;
     margin-bottom: 20px;
     border-radius: 40px;
-    font-family: 'Acme', sans-serif; 
+    font-family: 'Acme', sans-serif;
     height: 50px;
-  }
-  
-  .profile-description h2 {
-    font-size: 2em; /* Adjust the size to match your design */
+}
+
+.profile-description h2 {
+    font-size: 2em;
     margin: 0;
     padding: 0;
-    color:  #212121; /* Adjust the color to match your design */
-    font-family: 'Acme', sans-serif; 
-  }
-  
-  .profile-description p {
-    font-size: 1em; /* Adjust the size to match your design */
+    color: #212121;
+    font-family: 'Acme', sans-serif;
+}
+
+.profile-description p {
+    font-size: 1em;
     line-height: 1.6;
-    color: #666; /* Adjust the color to match your design */
-  }
-  
-  .download-link {
+    color: #212121;
+}
+
+.download-link {
     background: #212121;
     color: #fff;
     padding: 10px 20px;
@@ -220,19 +272,20 @@ nav {
     cursor: pointer;
     border-radius: 40px;
     font-family: 'Acme', sans-serif;
-    text-decoration: none; 
-    display: inline-block; 
-    border: none; 
-    line-height: 30px; 
-    height: 50px; 
-    width: auto; 
-    box-sizing: border-box; 
-    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    line-height: 30px;
+    height: 50px;
+    width: auto;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .download-link:hover {
-    background: #333; 
-    color: #fff; 
+    background: #333;
+    color: #fff;
 }
 
 .portfolio {
@@ -242,23 +295,22 @@ nav {
 
 .carousel-container {
     position: relative;
-  }
-  
-  .cards-container {
+}
+
+.cards-container {
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x mandatory; /* Enables snap scrolling */
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-  }
-  
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .cards-container::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.cards-container::-webkit-scrollbar {
     display: none;
-  }
-  
-  .carousel-arrow {
+}
+
+.carousel-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -269,21 +321,21 @@ nav {
     padding: 0 20px;
     cursor: pointer;
     user-select: none;
-  }
-  
-  .left-arrow {
+}
+
+.left-arrow {
     left: 0;
-  }
-  
-  .right-arrow {
+}
+
+.right-arrow {
     right: 0;
-  }
-  
-  .card {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center children vertically */
-    align-items: center; /* Center children horizontally */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex: 0 0 auto;
     margin-right: 1rem;
     scroll-snap-align: start;
@@ -293,16 +345,16 @@ nav {
     transition: transform 0.3s ease-in-out;
     border-radius: 16px;
     max-width: 315px;
-    background: transparent; /* Set background to transparent */
+    background: transparent;
     border: none;
     padding: 1rem;
 }
 
 .card img {
-    max-width: 100%; /* Image can be as wide as its container */
-    max-height: 100%; /* Image can be as tall as its container */
+    max-width: 100%;
+    max-height: 100%;
     transition: transform 0.3s ease-in-out;
-    object-fit: contain; /* This ensures the image maintains its aspect ratio */
+    object-fit: contain;
 }
 
 .card .content {
@@ -311,9 +363,9 @@ nav {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.5);
     color: white;
-    transform: translateY(100%); /* Hide the details initially */
+    transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -329,160 +381,238 @@ nav {
     transform: scale(1.1);
 }
 
-  
-  .card .title, .card .btn {
-    margin: 0; 
-    text-align: center;
-  }
 
-  .copy{
+.card .title,
+.card .btn {
+    margin: 0;
     text-align: center;
-  }
-  
-  .card .btn {
+}
+
+.copy {
+    text-align: center;
+}
+
+.card .btn {
     background: #212121;
     border: none;
     color: white;
     padding: 0.5em 1em;
     text-transform: uppercase;
     transition: background-color 0.3s ease-in-out;
-  }
-  
-  .card .btn:hover {
-    background: #333; /* Darker background on hover */
-  }
+}
+
+.card .btn:hover {
+    background: #333;
+}
 
 
-  .card:focus {
+.card:focus {
     outline: none;
 }
 
 
-  p{
-    font-family: 'Acme', sans-serif; 
-  }
+p {
+    font-family: 'Acme', sans-serif;
+}
 
-  .reach-out {
-    padding: 40px 0; /* Padding on top and bottom */
-    text-align: center; /* Center the text */
-  }
-  
-  .reach-out .container {
-    max-width: 800px; 
-    margin: 0 auto; 
-  }
-  
-  .reach-out h2 {
-    color: #212121; /* Dark text color for headers */
-    margin-bottom: 20px; /* Space below headers */
-  }
-  
-  .reach-out p,
-  .reach-out a {
-    display: block; /* Each contact detail on a new line */
-    margin-bottom: 10px; /* Space below each line */
-    text-decoration: none; /* No underline on the link */
-  }
-  
+.reach-out {
+    padding: 40px 0;
+    text-align: center;
+}
 
-/* Styles for mobile devices */
+.reach-out .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.reach-out h2 {
+    color: #212121;
+    margin-bottom: 20px;
+}
+
+.reach-out p,
+.reach-out a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
 @media (max-width: 768px) {
     .hamburger {
-        display: block;
-        cursor: pointer;
-      }
-    
-      /* Hide the menu items */
-      #navbarLinks ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-      }
-    
-      /* Show the menu items when .active is added to #navbarLinks */
-      #navbarLinks.active ul {
-        display: flex;
-      }
-    
-      /* Style the menu items for mobile */
-      #navbarLinks li {
-        text-align: center;
-        padding: 15px;
-        border-bottom: 1px solid #ddd;
-      }
-    .navbar ul {
-      flex-direction: column;
-      align-items: center;
-      padding-top: 20px;
+        display: block; /* Show hamburger icon */
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 2001; /* Above the overlay */
     }
-  
-    .navbar li {
-      margin: 10px 0;
-    }
-  
-    .navbar a {
-      font-size: 1em; 
-    }
-  
-    .hero {
-        height: auto; 
-        padding: 20px 10%; 
-        flex-direction: column;
-        text-align: center;
-      }
-    
-      .hero-image {
+
+    header {
         position: relative;
+        width: 100%; /* Ensure header is full width */
+    }
+   /* Show navbar links when active */
+   #navbarLinks.active {
+    display: flex;
+}
+
+#navbarLinks ul li a {
+    font-size: 1.5rem; /* Larger text size for menu items */
+    padding: 10px;
+    margin: 10px 0;
+    display: block;
+}
+
+#navbarLinks ul li a:hover {
+    background-color: #f4f4f4; /* Hover color change */
+}
+
+.overlay {
+    display: none; /* Start hidden */
+}
+
+
+
+/* Overlay - shown when menu is active */
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+/* Navbar Links - hidden by default, shown when checkbox is checked */
+#navbarLinks {
+    display: none;
+    position: fixed;
+    background-color: #131418; /* Dark background for the navbar */
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.hamburger-checkbox:checked ~ #navbarLinks {
+    display: flex; /* Show menu when checked */
+}
+
+    #navbarLinks.active {
+        display: block; /* Show when the menu is active */
+    }
+
+    #navbarLinks.active ul {
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        height: auto; /* Height is set to auto to contain the image nicely */
-        order: -1; /* Ensures the image goes above the text on mobile */
-      }
-    
-      .hero-text, .hero-image {
+        position: absolute;
+        top: 60px;
+        /* Adjust this value so it's right below the hamburger menu */
+        left: 0;
+        background-color: none;
+        /* So the menu is readable on top of any content */
+        z-index: 1000;
+    }
+
+    #navbarLinks li {
+        width: 100%; /* Full width for list items */
+        border-bottom: 1px solid #f4f4f4; /* Match reference border */
+    }
+
+    #navbarLinks li a {
+        display: block;
+        padding: 20px 20px; /* Consistent padding */
+        text-decoration: none;
+        color: #FFF; /* Light text color for visibility */
+        background-color: #131418; /* Dark background to match navbar */
+        border: none;
+    }
+    #navbarLinks li a:hover {
+        background-color: #333; /* Darker background on hover */
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+        /* Allows items to wrap into a new row as needed */
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    .navbar li {
+        margin: 10px 0;
+    }
+
+    .navbar a {
+        font-size: 1em;
+    }
+
+    .hero-image {
+        width: 100%; /* Ensure the image covers the width of the screen */
+        position: absolute; /* Adjust position as necessary */
+        height: auto; /* Adjust the height to be auto */
+        overflow: hidden; /* Maintain overflow hidden */
+    }
+
+    .hero-image img {
+        width: 100%; /* Ensure the image is responsive and covers the available width */
+        height: auto; /* Adjust the height to maintain aspect ratio */
+    }
+
+    .hero {
+        height: auto; /* Adjusts the hero section to fit the content rather than taking the full viewport height */
+        padding: 20px 5%; /* Optional: Adjust the padding to suit your design needs on smaller screens */
+    }
+
+    .hero-text,
+    .hero-image {
         max-width: 100%;
-      }
-    
-      .hero-text h1 {
-        font-size: 2em; /* Adjust the font size for smaller screens */
-      }
-    
-      .hero-text p {
-        font-size: 1.2em; /* Adjust the paragraph font size for readability */
-      }
-  
+    }
+
+    .hero-text h1 {
+        font-size: 2em;
+    }
+
+    .hero-text p {
+        font-size: 1.2em;
+    }
+
     .contact-button {
-      padding: 5px 10px; /* Smaller padding for buttons */
+        padding: 5px 10px;
     }
-  
-    /* Adjust the profile image for mobile */
+
+    
     .profile-badge {
-      width: 200px; /* Smaller width for the badge */
-      height: 200px; /* Smaller height for the badge */
+        width: 200px;
+        height: 200px;
+       
     }
-  
+
     .profile-description {
-      text-align: center; /* Center text for mobile */
+        text-align: center;
+     
     }
-  
-    /* Adjust card sizes for mobile */
+
+   
     .card {
-      max-width: 100%;
-      margin: 10px; /* Add margin for spacing */
+        max-width: 100%;
+        margin: 10px;
     }
-  
-    /* Adjust image sizes within cards for mobile */
+
+ 
     .card img {
-      max-width: 100%;
-      height: auto;
+        max-width: 100%;
+        height: auto;
     }
-  
-    /* Adjust carousel arrow positions for smaller screens */
+
     .carousel-arrow {
-      font-size: 1.5em; /* Smaller arrows */
-      padding: 0 10px; /* Less padding */
+        font-size: 1.5em;
+        padding: 0 10px;
     }
-  
+
     .reach-out .container {
-      padding: 20px; /* Padding inside the container */
+        padding: 20px;
     }
-  }
+}
+

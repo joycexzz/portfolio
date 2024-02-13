@@ -1,14 +1,16 @@
 <header>
   <div class="navbar">
-    <div class="logo">JT</div>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav id="navbarLinks">
-      <ul>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#portfolio">PORTFOLIO</a></li>
-        <li><a href="#reach-out">REACH OUT</a></li>
-      </ul>
-    </nav>
+      <div class="logo">JT</div>
+      <input type="checkbox" id="nav-check" class="hamburger-checkbox">
+      <label for="nav-check" class="hamburger" (click)="toggleMenu()">&#9776;</label>
+      <nav id="navbarLinks">
+          <ul>
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#portfolio">PORTFOLIO</a></li>
+              <li><a href="#reach-out">REACH OUT</a></li>
+          </ul>
+      </nav>
+      <div class="overlay"></div>
   </div>
 </header>
 <main>

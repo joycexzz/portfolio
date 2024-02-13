@@ -116,6 +116,16 @@ export class AppComponent {
     }
   }
   
+  toggleMenu(): void {
+    const navbarLinks = document.getElementById('navbarLinks') as HTMLElement;
+    const overlay = document.querySelector('.overlay') as HTMLElement;
+    navbarLinks.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+
+
+  
 
   showMore(index: number ){
     //
